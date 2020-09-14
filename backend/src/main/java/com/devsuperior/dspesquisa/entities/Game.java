@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.devsuperior.dspesquisa.entities.enums.Platform;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tb_game")
@@ -24,7 +25,8 @@ public class Game implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
-	private Enum<Platform> platform;
+	
+	private Platform platform;
 	
 	@ManyToOne
 	@JoinColumn(name="genre_id")
@@ -36,7 +38,7 @@ public class Game implements Serializable{
 	public Game() {
 	}
 	
-	public Game(Long id, String title, Enum<Platform> platform, Genre genre) {
+	public Game(Long id, String title, Platform platform, Genre genre) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -84,11 +86,11 @@ public class Game implements Serializable{
 		this.title = title;
 	}
 	
-	public Enum<Platform> getPlatform() {
+	public Platform getPlatform() {
 		return platform;
 	}
 	
-	public void setPlatform(Enum<Platform> platform) {
+	public void setPlatform(Platform platform) {
 		this.platform = platform;
 	}
 	
